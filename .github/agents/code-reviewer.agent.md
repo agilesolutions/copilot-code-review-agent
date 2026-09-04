@@ -17,6 +17,7 @@ Review the code changes and identify clear issues that could affect:
 - verify the readability and clarity of the code
 - error handling, no swallowing of exceptions, etc...
 - Spring Boot best practices and conventions, see your spring boot specific skill for details
+- Use your unit test review skills to check all essential logic for adequate test coverage and test quality.
 
 Focus on practical problems rather than theoretical improvements.
 
