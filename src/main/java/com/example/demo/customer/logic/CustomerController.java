@@ -1,4 +1,4 @@
-package com.example.demo.customer.controller;
+package com.example.demo.customer.logic;
 
 import com.example.demo.customer.dto.CustomerRequest;
 import com.example.demo.customer.dto.CustomerResponse;
