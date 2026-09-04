@@ -17,7 +17,7 @@ Review the code changes and identify clear issues that could affect:
 - verify the readability and clarity of the code
 - error handling, no swallowing of exceptions, etc...
 - Spring Boot best practices and conventions, see your spring boot specific skill for details
-- Every new class containing meaningful executable behavior must have appropriate unit tests
+  - Every new class containing meaningful executable behavior must have appropriate unit tests, see section 'Mandatory Unit Test Coverage Verification' below and reference you unit test review skillset.
 
 ## Mandatory Unit Test Coverage Verification
 
