@@ -2,8 +2,11 @@ package com.example.demo.customer.entity;
 
 // Employee entity with fields id, firstName, lastName, email, createdAt
 import jakarta.persistence.*;
+import lombok.Data;
+
 import java.time.OffsetDateTime;
 
+@Data
 @Entity
 @Table(name = "employees", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class Employee {
