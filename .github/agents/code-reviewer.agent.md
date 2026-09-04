@@ -16,6 +16,7 @@ Review the code changes and identify clear issues that could affect:
 - check for java coding style guide according Oracle/Sun Code Conventions
 - verify the readability and clarity of the code
 - error handling, no swallowing of exceptions, etc...
+- Spring Boot best practices and conventions, see your spring boot specific skill for details
 
 Focus on practical problems rather than theoretical improvements.
 

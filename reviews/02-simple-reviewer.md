@@ -6,7 +6,7 @@
 
 | Severity | Location | Finding |
 |---|---|---|
-| MEDIUM | `src/main/java/com/example/demo/customer/dto/employee.java:3` | Record and filename use lower-case name `employee` — violates Java naming conventions and project style. |
+| MEDIUM | `src/main/java/com/example/demo/customer/dto/employee.java:3` | Record and filename use lower-case name `Employee` — violates Java naming conventions and project style. |
 | LOW | `src/main/java/com/example/demo/customer/dto/employee.java:3` | DTO lacks validation annotations (e.g., @NotBlank, @Email) for public API inputs. |
 
 ### Details
@@ -15,7 +15,7 @@
 
 **Location:** `src/main/java/com/example/demo/customer/dto/employee.java:3`
 
-**Issue:**  The public record is declared as `employee` (lower-case). Java type names should use PascalCase (e.g., `Employee`). While the code compiles, this breaks standard conventions and may confuse maintainers.
+**Issue:**  The public record is declared as `Employee` (lower-case). Java type names should use PascalCase (e.g., `Employee`). While the code compiles, this breaks standard conventions and may confuse maintainers.
 
 **Recommendation:** Rename the record to `Employee` and move/rename the file to `Employee.java`. Update all usages/imports accordingly.
 
