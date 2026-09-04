@@ -1,0 +1,53 @@
+plugins {
+	id 'java'
+	// plugin versions will be provided by pluginManagement resolutionStrategy (based on gradle/libs.versions.toml)
+	id 'org.springframework.boot'
+	id 'io.spring.dependency-management'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(25)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+// now fully rely on the version catalog `libs` (use catalog accessors, not findLibrary)
+
+dependencies {
+	// Lombok
+	compileOnly libs.lombok
+	annotationProcessor libs.lombok
+	// springdoc (openapi)
+	implementation libs.springdoc
+	// Testcontainers BOM via catalog
+	testImplementation platform(libs.testcontainersBom)
+
+	// Spring Boot starters and other libs provided by the version catalog
+	implementation libs.springBootWeb
+	implementation libs.springBootDataJpa
+	implementation libs.springBootValidation
+	// flyway starter - use version catalog entry
+	implementation libs.springBootFlyway
+	implementation libs.flywayCore
+	// database drivers
+	runtimeOnly libs.postgresql
+	runtimeOnly libs.h2
+	// tests
+	testImplementation libs.springBootTest
+	testImplementation libs.resttestclient
+	testImplementation libs.testcontainersJunitJupiter
+	testImplementation libs.testcontainersPostgresql
+	testImplementation libs.testcontainers
+	testRuntimeOnly libs.junitPlatformLauncher
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

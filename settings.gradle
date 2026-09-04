@@ -1,0 +1,40 @@
+// Configure pluginManagement repositories so plugin aliases from the catalog
+// can be resolved (gradlePluginPortal + mavenCentral are common sources).
+// Note: pluginManagement must come before other settings script statements.
+pluginManagement {
+	// Read plugin definitions from gradle/libs.versions.toml and register them
+	// under pluginManagement.plugins so the `plugins` block in build.gradle can
+	// omit explicit versions.
+	plugins {
+		def tomlFile = file("gradle/libs.versions.toml")
+		if (tomlFile.exists()) {
+			def inPluginsSection = false
+			tomlFile.eachLine { line ->
+				line = line.trim()
+				if (line == '[plugins]') { inPluginsSection = true; return }
+				if (inPluginsSection && line.startsWith('[')) { inPluginsSection = false; return }
+				if (inPluginsSection && line && !line.startsWith('#')) {
+					def m = (line =~ /^(\S+)\s*=\s*\{\s*id\s*=\s*"([^"]+)"\s*,\s*version\s*=\s*"([^"]+)"\s*\}/)
+					if (m.matches()) {
+						def pluginId = m[0][2]
+						def pluginVersion = m[0][3]
+						// register plugin id and version
+						id(pluginId) version(pluginVersion)
+					}
+				}
+			}
+		}
+	}
+	repositories {
+		gradlePluginPortal()
+		mavenCentral()
+	}
+}
+
+rootProject.name = 'demo'
+
+// Gradle automatically loads `gradle/libs.versions.toml` as the `libs` catalog.
+// Avoid calling `versionCatalogs.create("libs") { from(...) }` because the
+// file is already discovered by the Gradle runtime and calling `from` twice
+// causes a "Multiple 'from' invocations" error.
+

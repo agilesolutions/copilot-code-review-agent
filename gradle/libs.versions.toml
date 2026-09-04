@@ -1,0 +1,39 @@
+[versions]
+spring-boot = "4.0.0"
+spring-framework = "7.0.0"
+junit-jupiter = "5.10.0"
+testcontainers = "1.19.0"
+postgresql = "42.6.0"
+flyway = "9.22.0"
+lombok = "1.18.40"
+springdoc = "2.3.0"
+h2 = "2.2.220"
+
+[plugins]
+spring-boot = { id = "org.springframework.boot", version = "4.0.0" }
+spring-dependency-management = { id = "io.spring.dependency-management", version = "1.1.0" }
+
+[libraries]
+# Spring Boot starters (simple aliases)
+springBootWeb = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "spring-boot" }
+springBootDataJpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa", version.ref = "spring-boot" }
+springBootValidation = { module = "org.springframework.boot:spring-boot-starter-validation", version.ref = "spring-boot" }
+springBootTest = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "spring-boot" }
+
+# Database drivers and Flyway
+postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
+h2 = { module = "com.h2database:h2", version.ref = "h2" }
+flywayCore = { module = "org.flywaydb:flyway-core", version.ref = "flyway" }
+springBootFlyway = { module = "org.springframework.boot:spring-boot-starter-flyway", version.ref = "spring-boot" }
+
+# Testcontainers modules (align to same version)
+testcontainers = { module = "org.testcontainers:testcontainers", version.ref = "testcontainers" }
+testcontainersPostgresql = { module = "org.testcontainers:postgresql", version.ref = "testcontainers" }
+testcontainersBom = { module = "org.testcontainers:testcontainers-bom", version.ref = "testcontainers" }
+testcontainersJunitJupiter = { module = "org.testcontainers:junit-jupiter", version.ref = "testcontainers" }
+
+# Additional libraries used in build.gradle
+lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
+springdoc = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui", version.ref = "springdoc" }
+resttestclient = { module = "org.springframework.boot:spring-boot-resttestclient", version.ref = "spring-boot" }
+junitPlatformLauncher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junit-jupiter" }
