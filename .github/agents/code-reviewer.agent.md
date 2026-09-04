@@ -17,6 +17,25 @@ Review the code changes and identify clear issues that could affect:
 - verify the readability and clarity of the code
 - error handling, no swallowing of exceptions, etc...
 - Spring Boot best practices and conventions, see your spring boot specific skill for details
+- Every new class containing meaningful executable behavior must have appropriate unit tests
+
+## Mandatory Unit Test Coverage Verification
+
+When the changeset contains new or modified production code:
+1. Identify every newly added or substantially modified production class
+   under `src/main/java`.
+2. For each production class, determine whether it contains executable
+   logic or behavior that should be unit tested.
+3. Search the complete test source tree under:
+    - `src/test/java`
+4. Find tests corresponding to each production class.
+5. Do not assume a test exists merely because a test package exists.
+6. Verify that the test actually exercises the new or modified behavior.
+7. Report a finding when a new production class containing meaningful business/application logic has no corresponding unit test.
+8. Report a finding when an existing test class exists but does not test the newly introduced behavior.
+9. Report a finding when important new branches, error handling, validation, or business rules have no meaningful test coverage.
+10. Do not require unit tests for classes that are purely declarative, configuration-only, generated code, DTOs/records without behavior, or trivial framework wiring unless project standards explicitly require it.
+11. Prefer behavioral coverage over a simple test-class existence check.
 
 Focus on practical problems rather than theoretical improvements.
 
@@ -43,16 +62,17 @@ Use these severity levels:
 
 # Process
 
-1. Inspect the changed files that are part of the changeset.
+1. Inspect all java files and spring boot configuration files that were added or changed as part of this release branch changeset.
 2. Understand the purpose of the change.
 3. Review the implementation.
-4. Identify significant issues.
-5. Remove duplicate or speculative findings.
-6. Write the output as a Markdown file and save it under the `reviews` directory. See instructions at [Report filename conventions](#report-filename-convention)
-7. If directory `/reviews` does not exist, create it.
-8. If the report already exists, replace/update it rather than append another report.
-9. Do not use custom `create_file` or `insert_edit_into_file` tools. Use the normal workspace file-editing capability available to GitHub Copilot / IntelliJ.
-10. use the name of the current branch to generate the report filename, sanitized as follows:
+4. verify mandatory unit test coverage for all new classes as described above at section 'Mandatory Unit Test Coverage Verification'. 
+5. Identify significant issues. 
+6. Remove duplicate or speculative findings. 
+7. Write the output as a Markdown file and save it under the `reviews` directory. See instructions at [Report filename conventions](#report-filename-convention)
+8. If directory `/reviews` does not exist, create it. 
+9. If the report already exists, replace/update it rather than append another report. 
+10. Do not use custom `create_file` or `insert_edit_into_file` tools. Use the normal workspace file-editing capability available to GitHub Copilot / IntelliJ. 
+11. use the name of the current branch to generate the report filename, sanitized as follows:
     - Replace `/` and `\` with `-`.
     - Replace whitespace with `-`.
     - Replace characters outside `[A-Za-z0-9._-]` with `-`.
@@ -66,7 +86,7 @@ Do not modify the source code.
 
 # Output
 
-1. Produced and save a Markdown page under the `reviews` directory.
+1. Write all review findings to a Markdown page under the `reviews` directory.
 2. Create the reviews directory if it does not exist.
 3. Generate and save the review using this Markdown structure:
 

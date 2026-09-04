@@ -6,16 +6,16 @@
 
 | Severity | Location | Finding |
 |---|---|---|
-| LOW | `src/main/java/com/example/demo/customer/logic/CustomerController.java:1` | Non-idiomatic package name `logic` — controller belongs in a `controller` or `web` package |
-| LOW | `src/main/java/com/example/demo/customer/logic/CustomerController.java:33-39` | Creation method builds Location header manually instead of using ResponseEntity.created(URI) |
-| LOW | `src/main/java/com/example/demo/customer/logic/CustomerController.java:42-45` | getAll() returns raw List without pagination or explicit ResponseEntity; consider paging and consistent response type |
-| LOW | `src/main/java/com/example/demo/customer/logic/CustomerController.java:47-55` | Other endpoints return domain DTO directly; consider using ResponseEntity for consistency and to control headers/status explicitly |
+| LOW | `src/main/java/com/example/demo/customer/controller/CustomerController.java:1` | Non-idiomatic package name `logic` — controller belongs in a `controller` or `web` package |
+| LOW | `src/main/java/com/example/demo/customer/controller/CustomerController.java:33-39` | Creation method builds Location header manually instead of using ResponseEntity.created(URI) |
+| LOW | `src/main/java/com/example/demo/customer/controller/CustomerController.java:42-45` | getAll() returns raw List without pagination or explicit ResponseEntity; consider paging and consistent response type |
+| LOW | `src/main/java/com/example/demo/customer/controller/CustomerController.java:47-55` | Other endpoints return domain DTO directly; consider using ResponseEntity for consistency and to control headers/status explicitly |
 
 ### Details
 
 #### [LOW] Package naming is non-idiomatic
 
-**Location:** `src/main/java/com/example/demo/customer/logic/CustomerController.java:1`
+**Location:** `src/main/java/com/example/demo/customer/controller/CustomerController.java:1`
 
 **Issue:**  
 The package segment `logic` is unconventional for a Spring Boot controller. Typical packages are `controller`, `web`, or `api` which make responsibilities clearer.
@@ -25,7 +25,7 @@ Move controller classes to `com.example.demo.customer.controller` or `...custome
 
 #### [LOW] Prefer ResponseEntity.created for POST
 
-**Location:** `src/main/java/com/example/demo/customer/logic/CustomerController.java:33-39`
+**Location:** `src/main/java/com/example/demo/customer/controller/CustomerController.java:33-39`
 
 **Issue:**  
 The create(...) method constructs a Location header manually and builds a ResponseEntity. While functionally correct, Spring provides a clearer idiom: ResponseEntity.created(URI). This improves readability.
@@ -37,7 +37,7 @@ Use URI creation and ResponseEntity.created(URI). Example:
 
 #### [LOW] getAll() should consider pagination and consistent response wrapping
 
-**Location:** `src/main/java/com/example/demo/customer/logic/CustomerController.java:42-45`
+**Location:** `src/main/java/com/example/demo/customer/controller/CustomerController.java:42-45`
 
 **Issue:**  
 Returning List<CustomerResponse> directly is acceptable for small datasets but does not scale and gives no control over status/headers.
@@ -47,7 +47,7 @@ Consider returning ResponseEntity<Page<CustomerResponse>> or ResponseEntity<List
 
 #### [LOW] Consistent response types across controller
 
-**Location:** `src/main/java/com/example/demo/customer/logic/CustomerController.java:47-55`
+**Location:** `src/main/java/com/example/demo/customer/controller/CustomerController.java:47-55`
 
 **Issue:**  
 Some endpoints return raw DTOs (e.g., getById, update) while create returns ResponseEntity. Inconsistent response shapes can complicate filtering, headers, and testing.
